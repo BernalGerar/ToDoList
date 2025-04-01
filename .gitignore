@@ -1,0 +1,31 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Directorios de Node.js
+node_modules/
+dist/
+build/
+
+# Directorios de producción y caché
+.DS_Store
+.env
+coverage/
+.vscode/
+.idea/
+.npm/
+
+# Archivos específicos de VS Code (pero deja configuraciones importantes)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Archivos de sistema de Windows y MacOS
+Thumbs.db
+ehthumbs.db
+
+# Archivos de lock (depende si usas npm o yarn)
+#package-lock.json
