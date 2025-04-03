@@ -27,5 +27,6 @@ coverage/
 Thumbs.db
 ehthumbs.db
 
+*.http
 # Archivos de lock (depende si usas npm o yarn)
 #package-lock.json
