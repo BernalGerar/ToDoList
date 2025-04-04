@@ -1,9 +1,10 @@
 import express from "express";
 import {ObtenerListas, CrearLista, ActualizarList, EliminarLista} from "./handlers.js"
+import { ValCabecera, CuerpoVacio, FaltaId, UrlIncorrecta } from "./checkRequest.js";
 
 const router = express.Router();
 
-router.use(express.json());
+router.use(ValCabecera, express.json());
 
 router.get("/", (req, res, next) => {
     res.send("<h1>Bienvenido</h1>");
@@ -11,10 +12,12 @@ router.get("/", (req, res, next) => {
 
 router.get("/api/tasks", ObtenerListas);
 
-router.post("/api/tasks", CrearLista);
+router.post("/api/tasks", CuerpoVacio, CrearLista);
 
-router.put("/api/tasks/:id", ActualizarList);
+router.put("/api/tasks/:id", CuerpoVacio, FaltaId, ActualizarList);
 
-router.delete("/api/tasks/:id", EliminarLista);
+router.delete("/api/tasks/:id", FaltaId, EliminarLista);
+
+router.use(UrlIncorrecta);
 
 export default router;

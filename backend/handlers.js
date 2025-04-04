@@ -3,7 +3,7 @@ import crypto from "node:crypto";
 
 export function ObtenerListas(req, res) {
     console.log("peticion recivida");
-    res.json(taskList);
+    res.status(200).json(taskList);
 }
 
 export function CrearLista(req, res) {
@@ -20,7 +20,7 @@ export function CrearLista(req, res) {
 
     taskList.push(task);
 
-    res.json(task);
+    res.status(200).json(task);
 
 }
 
@@ -33,11 +33,11 @@ export function ActualizarList(req, res) {
         tittle: tittle ?? taskList[taskPos].tittle,
         descriptcion: descriptcion ?? taskList[taskPos].descriptcion,
         completed: completed ?? taskList[taskPos].completed,
-        id: taskList[taskPos].completed,
+        id: taskList[taskPos].id,
         createdAt: taskList[taskPos].createdAt
     }
 
-    res.json(taskList[taskPos])
+    res.status(200).json(taskList[taskPos])
 }
 
 export function EliminarLista(req, res) {
