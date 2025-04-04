@@ -3,19 +3,7 @@ import {ObtenerListas, CrearLista, ActualizarList, EliminarLista} from "./handle
 
 const router = express.Router();
 
-router.use((req, res, next) => {
-    let body = '';
-
-    req.on("data", chunck => {
-        body += chunck.toString();
-    })
-
-    req.on("end", () => {
-        req.body = JSON.parse(body);
-        next();
-    })
-
-});
+router.use(express.json());
 
 router.get("/", (req, res, next) => {
     res.send("<h1>Bienvenido</h1>");
