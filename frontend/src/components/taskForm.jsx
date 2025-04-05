@@ -1,26 +1,11 @@
 import { Button } from "./compAux/button.jsx"
-import { useState } from "react";
 
-export function TaskForm({ onSubmit }) {
-    const [text, setText] = useState("");
-    const [tittle, setTittle] = useState("");
-
-    function handleSubmit() {
-        const newTask = {
-            "tittle": tittle,
-            "description": text
-        };
-
-        onSubmit(newTask);
-
-        setText("");
-        setTittle("");
-    }
+export function TaskForm({onChangeTitle, onChangeDes, handleSubmit, text, title }) {
 
     return ( 
       <>
-        <input type="text" value={tittle} onChange={(e) => { setTittle(e.target.value) }}/>      
-        <input type="text" value={text} onChange={(e) => { setText(e.target.value) }}/>
+        <input type="text" value={title} onChange={ (e) => { onChangeTitle(e) } }/>      
+        <input type="text" value={text} onChange={ (e) => {  onChangeDes(e) } }/>
         <Button onClick={ handleSubmit } nombre='confirmar'/>
       </>
     )
