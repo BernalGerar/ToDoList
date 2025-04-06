@@ -1,16 +1,18 @@
 import { TaskItem } from "./taskItem.jsx"
 
-export function TaskList({ListaTareas, onDelete, onEdit}) {   
+export function TaskList({ListaTareas, onDelete, onEdit, onChange}) {   
 
     return (
         <ul>
-            {ListaTareas.map((task, index) => {
-                return ( 
+            {ListaTareas.map( task => {
+                return (
                     <TaskItem
+                        onChange={ (id, title, description, state) => { onChange(id, title, description, state) }}
                         onEdit={ (id, title, description) => { onEdit(id, title, description) } }
-                        onDelete={ (id, title, description) => { onDelete(id, title, description) } }
-                        key={index}
-                        id={index}
+                        onDelete={ (id) => { onDelete(id) } }
+                        key={task.id}
+                        id={task.id}
+                        state={task.completed}
                         title={task.title}
                         description={task.description}
                     />

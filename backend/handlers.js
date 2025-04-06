@@ -9,10 +9,10 @@ export function ObtenerListas(req, res) {
 export function CrearLista(req, res) {
     console.log("se recivio la tarea");
 
-    const {tittle, descriptcion, completed} = req.body;
+    const {title, description, completed} = req.body;
     const task = {
-        tittle: tittle,
-        descriptcion: descriptcion,
+        title: title,
+        description: description,
         completed: completed,
         id: crypto.randomUUID(),
         createdAt: new Date().toISOString()
@@ -26,12 +26,12 @@ export function CrearLista(req, res) {
 
 export function ActualizarList(req, res) {
     console.log("se actualizo la tarea");
-    const {tittle, descriptcion, completed} = req.body;
+    const {title, description, completed} = req.body;
     const taskPos = taskList.findIndex(task => task.id == req.params.id);
     
     taskList[taskPos] = {
-        tittle: tittle ?? taskList[taskPos].tittle,
-        descriptcion: descriptcion ?? taskList[taskPos].descriptcion,
+        tittle: title ?? taskList[taskPos].title,
+        description: description ?? taskList[taskPos].description,
         completed: completed ?? taskList[taskPos].completed,
         id: taskList[taskPos].id,
         createdAt: taskList[taskPos].createdAt

@@ -2,13 +2,8 @@ import './App.css';
 import { TaskForm } from './components/taskForm.jsx';
 import { TaskList } from './components/taskList.jsx';
 import { useState } from 'react';
+import { createTask, editTask, deleteTask } from './utils/api.js';
 
-const createTask = (title, des) => {
-  return {
-    title: title,
-    description: des
-  }
-}
 
 function App() {
   const [taskList, setTaskList] = useState([]);
@@ -16,20 +11,26 @@ function App() {
   const [title, setTitle] = useState('');
   const [taskId, setTaskId] = useState('');
 
-  function agregarTarea() {
+  async function agregarTarea() {
 
     if(text.length === 0 || title.length === 0) return;
 
     if(taskId.length === 0) {
+      
+      const dataTask = await createTask(title, text)
 
-      setTaskList( prevTask => {
-        return prevTask.concat([ createTask(title, text) ])
-      });
+      if (dataTask) {
+        setTaskList( prevTask => {
+          return prevTask.concat([ dataTask ])
+        });
+      }
 
     }else {
 
+      editTask(taskId, title, text, false)
+      
       setTaskList(prevTask => prevTask.map( task => 
-        taskList[ parseInt( taskId ) ] === task 
+        task.id === taskId 
           ? {...task, ...{title: title, description: text}}
           : task
       ))
@@ -43,16 +44,23 @@ function App() {
 
   }
 
-  const actualizar = (id, title, des) => {
-    setTitle(title);
-    setText(des);
-    setTaskId(id);
+  const actualizar = (id, title, des, state) => {
+    if(state === undefined) {
+      setTitle(title);
+      setText(des);
+      setTaskId(id);
+    }else editTask(id, title, des, state);
+
   }
 
-  const eliminar = (id, title, des) => {
-    setTaskList(prevTask => prevTask.filter( (task, index) =>
-      index !== parseInt(id)
-    ))
+  const eliminar = (id) => {
+
+    deleteTask(id);
+
+    setTaskList(prevTask => prevTask.filter( task =>
+      task.id !== id
+    ));
+
   }
 
   return (
@@ -66,6 +74,7 @@ function App() {
       />
       <TaskList 
         ListaTareas={taskList}
+        onChange={actualizar}
         onEdit={actualizar}
         onDelete={eliminar}
       />

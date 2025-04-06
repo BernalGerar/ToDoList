@@ -5,7 +5,7 @@ import cors from "cors"
 export function StartServer(port, frontend_url) {
 
     const app = express();
-
+    
     app.use(cors({
         origin: frontend_url,
         methods: ['GET', 'POST', 'PUT', 'DELETE']

@@ -25,6 +25,18 @@ export function FaltaId(req, res, next) {
     else next();
 }
 
+export function TareaYaAgregada(req, res, next) {
+    
+    const taskVal = taskList.some( task => { return ( 
+            (task.title.toLowerCase() == req.body.title.toLowerCase()) && 
+            (task.description.toLowerCase() == req.body.description.toLowerCase()) 
+        )}
+    )
+    //console.log(taskVal);
+    if(taskVal) res.status(409).json( {error: "La tarea está repetida"} )
+    else next();
+}
+
 export function UrlIncorrecta(req, res, next) {
     res.status(400).json( { error: "La ruta no es correcta" } );
 };
