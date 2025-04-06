@@ -27,7 +27,7 @@ function App() {
       });
 
     }else {
-      
+
       setTaskList(prevTask => prevTask.map( task => 
         taskList[ parseInt( taskId ) ] === task 
           ? {...task, ...{title: title, description: text}}
@@ -47,11 +47,12 @@ function App() {
     setTitle(title);
     setText(des);
     setTaskId(id);
-    console.log(id)
   }
 
   const eliminar = (id, title, des) => {
-
+    setTaskList(prevTask => prevTask.filter( (task, index) =>
+      index !== parseInt(id)
+    ))
   }
 
   return (
