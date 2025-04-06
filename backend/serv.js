@@ -16,7 +16,8 @@ export function StartServer(port, frontend_url) {
     const server = app.listen(port, () => {
         const { port } = server.address();
         console.log("Se está escuchando");
-        console.log("http://localhost:" + port)
+        console.log("Api: " + "http://localhost:" + port)
+        console.log("React: " + frontend_url)
     });
 
 }

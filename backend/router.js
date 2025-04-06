@@ -8,7 +8,7 @@ router.use(ValCabecera, express.json());
 
 router.get("/api/tasks", ObtenerListas);
 
-router.post("/api/tasks", CuerpoVacio, TareaYaAgregada, CrearLista);
+router.post("/api/tasks", CuerpoVacio, CrearLista);
 
 router.put("/api/tasks/:id", CuerpoVacio, FaltaId, ActualizarList);
 
