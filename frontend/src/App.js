@@ -1,29 +1,56 @@
 import './App.css';
 import { TaskForm } from './components/taskForm.jsx';
+import { TaskList } from './components/taskList.jsx';
 import { useState } from 'react';
+
+const createTask = (title, des) => {
+  return {
+    title: title,
+    description: des
+  }
+}
 
 function App() {
   const [taskList, setTaskList] = useState([]);
   const [text, setText] = useState('');
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState('');
+  const [taskId, setTaskId] = useState('');
 
   function agregarTarea() {
 
     if(text.length === 0 || title.length === 0) return;
 
-    const task = {
-      "title": title,
-      "description": text
+    if(taskId.length === 0) {
+
+      setTaskList( prevTask => {
+        return prevTask.concat([ createTask(title, text) ])
+      });
+
+    }else {
+      
+      setTaskList(prevTask => prevTask.map( task => 
+        taskList[ parseInt( taskId ) ] === task 
+          ? {...task, ...{title: title, description: text}}
+          : task
+      ))
+
+      setTaskId("")
     }
 
-    setTaskList( prevTask => {
-      return prevTask.concat([task])
-    });
-
-    console.log(taskList)
-
+    //console.log(taskList)
     setText("");
     setTitle("");
+
+  }
+
+  const actualizar = (id, title, des) => {
+    setTitle(title);
+    setText(des);
+    setTaskId(id);
+    console.log(id)
+  }
+
+  const eliminar = (id, title, des) => {
 
   }
 
@@ -35,6 +62,11 @@ function App() {
         onChangeTitle={ (e) => { setTitle(e.target.value) } }
         title={title}
         text={text}
+      />
+      <TaskList 
+        ListaTareas={taskList}
+        onEdit={actualizar}
+        onDelete={eliminar}
       />
     </>
   );

@@ -1,14 +1,14 @@
-import { TaskItem } from "./taskItem"
+import { TaskItem } from "./taskItem.jsx"
 
-export function TaskList({ListaTareas, onActualizar, onEditar}) {   
+export function TaskList({ListaTareas, onDelete, onEdit}) {   
 
     return (
         <ul>
             {ListaTareas.map((task, index) => {
                 return ( 
                     <TaskItem
-                        onActualizar={ (id, title, description) => { onEditar(id, title, description) } }
-                        onEditar={ (id, title, description) => { onActualizar(id, title, description) } }
+                        onEdit={ (id, title, description) => { onEdit(id, title, description) } }
+                        onDelete={ (id, title, description) => { onDelete(id, title, description) } }
                         key={index}
                         id={index}
                         title={task.title}
@@ -18,5 +18,5 @@ export function TaskList({ListaTareas, onActualizar, onEditar}) {
             })}
         </ul>
     )
-    
+
 }
