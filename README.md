@@ -21,7 +21,7 @@ FRONTEND_URL=http://localhost:3000
 
 PORT: Si no definís `PORT`, el servidor elegirá un **puerto aleatorio disponible** y lo imprimirá en la consola.
 
-> ✅ ¡Estate atento a la consola! Ahí verás en qué puerto quedó corriendo tu API. 
+✅ ¡Estate atento a la consola! Ahí verás en qué puerto quedó corriendo tu API. 
 
 FRONTEND_URL: URL de tu aplicación de React (por defecto, es `http://localhost:3000`).
 
@@ -47,7 +47,7 @@ En el archivo donde definís tus rutas (`router.js`, por ejemplo), podés inclui
 
 ```js
 // ✅ Con validación de duplicados
-router.post("/tasks", CuerpoVacio, TareaYaAgregada, crearTarea);
+router.post("/api/tasks", CuerpoVacio, TareaYaAgregada, crearTarea);
 
 // 🔓 Sin validación de duplicados
 router.post("/api/tasks", CuerpoVacio, CrearLista);
@@ -59,7 +59,7 @@ router.post("/api/tasks", CuerpoVacio, CrearLista);
 1. **Cloná este repositorio:**
 
 ```bash
-git clone https://github.com/tu-usuario/nombre-del-repo.git
+git clone https://github.com/BernalGerar/ToDoList.git
 cd nombre-del-repo
 
 ---
@@ -80,7 +80,7 @@ Asegurate de tener configuradas las variables de entorno antes de correr el serv
 ```bash
 PORT=1010 FRONTEND_URL=http://localhost:3000 node index.js
 
-> 🧠 **Podés reemplazar el número de puerto o la URL según lo que necesite tu entorno local o de producción.**
+🧠 **Podés reemplazar el número de puerto o la URL según lo que necesite tu entorno local o de producción.**
 
 ## 🌐 Configuración del Frontend (React)
 
