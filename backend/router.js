@@ -6,10 +6,6 @@ const router = express.Router();
 
 router.use(ValCabecera, express.json());
 
-router.get("/", (req, res, next) => {
-    res.send("<h1>Bienvenido</h1>");
-});
-
 router.get("/api/tasks", ObtenerListas);
 
 router.post("/api/tasks", CuerpoVacio, CrearLista);
