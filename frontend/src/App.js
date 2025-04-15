@@ -19,19 +19,18 @@ function App() {
       
       const dataTask = await createTask(title, text)
 
-      if (dataTask) {
-        setTaskList( prevTask => {
-          return prevTask.concat([ dataTask ])
-        });
-      }
+      dataTask && ( setTaskList( prevTask => {
+        return prevTask.concat([ dataTask ])
+      } ) );
 
+      console.log(taskList);
     }else {
 
       editTask(taskId, title, text, false)
       
       setTaskList(prevTask => prevTask.map( task => 
         task.id === taskId 
-          ? {...task, ...{title: title, description: text}}
+          ? {...task, ...{title: title, description: text, completed: false}}
           : task
       ))
 
@@ -49,7 +48,17 @@ function App() {
       setTitle(title);
       setText(des);
       setTaskId(id);
-    }else editTask(id, title, des, state);
+    }else {
+
+      editTask(id, title, des, state);
+
+      setTaskList(prevTask => prevTask.map( task => 
+        task.id === id 
+          ? {...task, ...{completed: state}}
+          : task
+      ));
+
+    }
 
   }
 

@@ -102,6 +102,22 @@ REACT_APP_API_URL=http://localhost:1010
 
 📌 Cambiá el número de puerto si tu servidor está corriendo en otro distinto.
 
+La aplicación utiliza una variable de entorno para definir si debe interactuar con la API de backend o trabajar de forma local (offline).
+
+### Variable: `REACT_APP_API_ENABLED`
+
+- **Tipo:** `boolean` (como string: `'true'` o `'false'`)
+- **Descripción:** Determina si la aplicación debe realizar peticiones a la API externa.
+- **Valores posibles:**
+  - `'true'`: habilita la comunicación con la API definida en `REACT_APP_API_URL`.
+  - `'false'`: deshabilita la comunicación con la API. En este modo, las tareas se gestionan únicamente en el cliente (localmente, sin backend).
+
+### Ejemplo en `.env`
+
+```env
+REACT_APP_API_URL=http://localhost:1010
+REACT_APP_API_ENABLED=true
+
 ## 🧪 Testeo con Postman durante el desarrollo
 
 Durante el desarrollo se utilizó **Postman** para 

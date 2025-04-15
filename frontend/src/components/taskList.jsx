@@ -11,8 +11,8 @@ export function TaskList({ListaTareas, onDelete, onEdit, onChange}) {
                         onEdit={ (id, title, description) => { onEdit(id, title, description) } }
                         onDelete={ (id) => { onDelete(id) } }
                         key={task.id}
-                        id={task.id}
-                        state={task.completed}
+                        id={ task.id}
+                        checked={task.completed}
                         title={task.title}
                         description={task.description}
                     />

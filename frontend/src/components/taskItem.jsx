@@ -1,6 +1,6 @@
 import { Button } from "./compAux/button.jsx"
 
-export function TaskItem({id, title, description, onEdit, onDelete, onChange}) {
+export function TaskItem({id, title, description, onEdit, onDelete, onChange, checked}) {
 
     return (
         <li> 
@@ -8,6 +8,7 @@ export function TaskItem({id, title, description, onEdit, onDelete, onChange}) {
                 <label>
                     <input 
                         type="checkbox"
+                        checked={checked}
                         onChange={(e) => { onChange(id, title, description, e.target.checked) } }
                     /> estado de tarea
                 </label>
